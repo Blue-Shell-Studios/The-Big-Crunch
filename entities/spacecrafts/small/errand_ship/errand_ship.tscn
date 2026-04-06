@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bdv3igevxcpk"]
+
+[ext_resource type="Script" uid="uid://bqqbxdxp4usnk" path="res://entities/spacecrafts/small/errand_ship/errand_ship.gd" id="1_15i2x"]
+[ext_resource type="Texture2D" uid="uid://csubk30mfj66j" path="res://assets/Ships/Kla'ed - Support ship - Base.png" id="1_q7w5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvjvm"]
+
+[node name="ErrandShip" type="RigidBody2D" unique_id=1045626184]
+gravity_scale = 0.0
+script = ExtResource("1_15i2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=406660234]
+rotation = 1.5707964
+texture = ExtResource("1_q7w5x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960991952]
+shape = SubResource("RectangleShape2D_mvjvm")
+disabled = true
