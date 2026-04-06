@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://chksy3a1klksk"]
+
+[ext_resource type="Script" uid="uid://tqn5163bxqwf" path="res://entities/asteroid/asteroid_cluster.gd" id="1_5yu3o"]
+
+[node name="AsteroidCluster" type="Node2D" unique_id=297502795]
+script = ExtResource("1_5yu3o")
+
+[node name="SpawnCooldown" type="Timer" parent="." unique_id=1958585455]
+autostart = true
+
+[connection signal="timeout" from="SpawnCooldown" to="." method="_on_spawn_cooldown_timeout"]
