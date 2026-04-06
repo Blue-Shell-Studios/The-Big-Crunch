@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://ds3rrihinan1g"]
+
+[ext_resource type="Texture2D" uid="uid://d3igwlsows36a" path="res://assets/Space Background 500x500.png" id="1_csopv"]
+[ext_resource type="PackedScene" uid="uid://chksy3a1klksk" path="res://entities/asteroid/asteroid_cluster.tscn" id="2_kagtj"]
+[ext_resource type="Script" uid="uid://bxuuhtrhrewt8" path="res://autoloads/managers/scrap_manager.gd" id="2_r77kf"]
+[ext_resource type="PackedScene" uid="uid://bdv3igevxcpk" path="res://entities/spacecrafts/small/errand_ship/errand_ship.tscn" id="3_3gdo0"]
+[ext_resource type="Texture2D" uid="uid://wepcmlh7pak1" path="res://assets/mystery_fog.png" id="6_cus2n"]
+[ext_resource type="PackedScene" uid="uid://drsbxwsdjdg4g" path="res://entities/planets/economic/economic_planet.tscn" id="6_kagtj"]
+[ext_resource type="PackedScene" uid="uid://cclg2tlupch6a" path="res://entities/planets/home_planet/home_planet.tscn" id="7_cus2n"]
+
+[node name="Main" type="Node2D" unique_id=1813492869]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1920781301]
+offset_left = -437.0
+offset_top = -404.0
+offset_right = 6167.0
+offset_bottom = 3582.0
+texture = ExtResource("1_csopv")
+stretch_mode = 1
+
+[node name="AsteroidManager" type="Node2D" parent="." unique_id=1999023771]
+position = Vector2(6, -16)
+
+[node name="AsteroidCluster" parent="AsteroidManager" unique_id=297502795 instance=ExtResource("2_kagtj")]
+position = Vector2(838, 183)
+
+[node name="AsteroidCluster2" parent="AsteroidManager" unique_id=2098790782 instance=ExtResource("2_kagtj")]
+position = Vector2(506, 1048)
+
+[node name="AsteroidCluster3" parent="AsteroidManager" unique_id=565860305 instance=ExtResource("2_kagtj")]
+position = Vector2(3556, 776)
+
+[node name="AsteroidCluster4" parent="AsteroidManager" unique_id=1283741214 instance=ExtResource("2_kagtj")]
+position = Vector2(4846, 687)
+
+[node name="AsteroidCluster5" parent="AsteroidManager" unique_id=603532634 instance=ExtResource("2_kagtj")]
+position = Vector2(1024, 2222)
+
+[node name="AsteroidCluster6" parent="AsteroidManager" unique_id=1708647723 instance=ExtResource("2_kagtj")]
+position = Vector2(2138, 552)
+
+[node name="AsteroidCluster7" parent="AsteroidManager" unique_id=1174814110 instance=ExtResource("2_kagtj")]
+position = Vector2(4421, 2185)
+
+[node name="AsteroidCluster8" parent="AsteroidManager" unique_id=860379596 instance=ExtResource("2_kagtj")]
+position = Vector2(2287, 2732)
+
+[node name="ScrapManager" type="Node2D" parent="." unique_id=1266620648]
+script = ExtResource("2_r77kf")
+
+[node name="ErrandShip" parent="." unique_id=1045626184 instance=ExtResource("3_3gdo0")]
+position = Vector2(568, 319)
+
+[node name="Border" type="Node" parent="." unique_id=2126880692]
+
+[node name="Left1" type="TextureRect" parent="Border" unique_id=1622485877]
+offset_left = 423.00018
+offset_top = 178.00006
+offset_right = 4113.343
+offset_bottom = 1079.0
+rotation = 1.5707964
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Left2" type="TextureRect" parent="Border" unique_id=1844530749]
+offset_left = 418.00018
+offset_top = -835.99994
+offset_right = 4108.343
+offset_bottom = 65.00006
+rotation = 1.5707964
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Right1" type="TextureRect" parent="Border" unique_id=1868880449]
+offset_left = 5310.0
+offset_top = 3691.3428
+offset_right = 9000.343
+offset_bottom = 4592.343
+rotation = -1.5707964
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Right2" type="TextureRect" parent="Border" unique_id=2069313299]
+offset_left = 5305.0
+offset_top = 2855.3428
+offset_right = 8995.343
+offset_bottom = 3756.3428
+rotation = -1.5707964
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Top1" type="TextureRect" parent="Border" unique_id=1427531098]
+offset_left = 4703.0
+offset_top = 463.0
+offset_right = 8393.343
+offset_bottom = 1364.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_h = true
+
+[node name="Top2" type="TextureRect" parent="Border" unique_id=1622032191]
+offset_left = 3245.0
+offset_top = 473.0
+offset_right = 6935.343
+offset_bottom = 1374.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Top3" type="TextureRect" parent="Border" unique_id=2121816067]
+offset_left = 8393.0
+offset_top = 463.0
+offset_right = 12083.343
+offset_bottom = 1364.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+
+[node name="Top4" type="TextureRect" parent="Border" unique_id=2147337751]
+offset_left = 7604.0
+offset_top = 475.0
+offset_right = 11294.343
+offset_bottom = 1376.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_h = true
+
+[node name="Top5" type="TextureRect" parent="Border" unique_id=1115501972]
+offset_left = 3454.3428
+offset_top = 3667.0002
+offset_right = 7144.6855
+offset_bottom = 4568.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="Top6" type="TextureRect" parent="Border" unique_id=570741284]
+offset_left = 1996.3428
+offset_top = 3677.0002
+offset_right = 5686.6855
+offset_bottom = 4578.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_v = true
+
+[node name="Top7" type="TextureRect" parent="Border" unique_id=630076392]
+offset_left = 7144.343
+offset_top = 3667.0002
+offset_right = 10834.686
+offset_bottom = 4568.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_v = true
+
+[node name="Top8" type="TextureRect" parent="Border" unique_id=756052453]
+offset_left = 6355.343
+offset_top = 3679.0002
+offset_right = 10045.686
+offset_bottom = 4580.0
+rotation = 3.1415927
+texture = ExtResource("6_cus2n")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=821078114]
+position = Vector2(2879, 1619)
+zoom = Vector2(0.2, 0.2)
+
+[node name="Planets" type="Node2D" parent="." unique_id=694183552]
+
+[node name="EconomicPlanet" parent="Planets" unique_id=1411703471 instance=ExtResource("6_kagtj")]
+position = Vector2(3709, 1761)
+
+[node name="HomePlanet" parent="Planets" unique_id=966002560 instance=ExtResource("7_cus2n")]
+position = Vector2(1219, 856)
