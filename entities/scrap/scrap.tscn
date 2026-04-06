@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://boj27uu22mvnt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cka4w"]
+radius = 8.246211
+
+[node name="Scrap" type="Area2D" unique_id=310283707]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1550724711]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(0, -8, -7, 5, 7, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=18405472]
+shape = SubResource("CircleShape2D_cka4w")
