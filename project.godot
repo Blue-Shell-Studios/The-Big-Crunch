@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Cosmic Crunch"
+run/main_scene="uid://ds3rrihinan1g"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[autoload]
+
+SignalBus="*uid://bjdae0cmjrvk0"
+TaskManager="*uid://bdjyojp28j28j"
+ShipRegistry="*uid://bngl1p4vwwbpc"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.06666667, 0.09411765, 0.21568628, 1)
