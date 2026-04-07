@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bfgcepchv76c8"]
+
+[ext_resource type="Script" uid="uid://bw5dh0rhct4e1" path="res://entities/projectiles/torpedo.gd" id="1_74lfm"]
+[ext_resource type="Texture2D" uid="uid://dovf08ga6jnpi" path="res://assets/projectiles/Kla'ed - Torpedo.png" id="1_i15h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74lfm"]
+atlas = ExtResource("1_i15h2")
+region = Rect2(0, 0, 11, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htpr7"]
+atlas = ExtResource("1_i15h2")
+region = Rect2(11, 0, 11, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qy5c"]
+atlas = ExtResource("1_i15h2")
+region = Rect2(22, 0, 11, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckeus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74lfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htpr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qy5c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abvrv"]
+size = Vector2(6, 14)
+
+[node name="Torpedo" type="Area2D" unique_id=1317399278]
+script = ExtResource("1_74lfm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1327575278]
+position = Vector2(-0.5, 5)
+sprite_frames = SubResource("SpriteFrames_ckeus")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=704923070]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_abvrv")
+
+[node name="Duration" type="Timer" parent="." unique_id=182136603]
+wait_time = 5.0
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

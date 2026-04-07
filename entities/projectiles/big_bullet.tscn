@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cwj7b3pgfyocp"]
+
+[ext_resource type="Texture2D" uid="uid://dl0gptw6lboau" path="res://assets/projectiles/Kla'ed - Big Bullet.png" id="1_3x343"]
+[ext_resource type="Script" uid="uid://c4fq1bg7eisen" path="res://entities/projectiles/big_bullet.gd" id="1_ehtll"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehtll"]
+atlas = ExtResource("1_3x343")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_525di"]
+atlas = ExtResource("1_3x343")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ebwe"]
+atlas = ExtResource("1_3x343")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t3k3"]
+atlas = ExtResource("1_3x343")
+region = Rect2(24, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lq20q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehtll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_525di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ebwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t3k3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nc31j"]
+size = Vector2(6, 12)
+
+[node name="BigBullet" type="Area2D" unique_id=24018325]
+script = ExtResource("1_ehtll")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=506903661]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_lq20q")
+autoplay = "default"
+frame_progress = 0.41503134
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=517925322]
+shape = SubResource("RectangleShape2D_nc31j")
+
+[node name="Duration" type="Timer" parent="." unique_id=16814876]
+wait_time = 3.0
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
