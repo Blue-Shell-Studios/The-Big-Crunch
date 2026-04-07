@@ -1,22 +1,24 @@
 [gd_scene format=3 uid="uid://5d334bqorsq3"]
 
 [ext_resource type="Script" uid="uid://cg6owtci4nkum" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://c4vl8p08jares" path="res://assets/Ships/Kla'ed - Fighter - Base.png" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://bfryqcjygvg4y" path="res://entities/player/bodies/small_player.tscn" id="2_abrql"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abrql"]
 
-[node name="Player" type="RigidBody2D" unique_id=2077158740]
+[node name="Player" type="RigidBody2D" unique_id=2077158740 groups=["player"]]
 gravity_scale = 0.0
 script = ExtResource("1_abrql")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404709333]
-shape = SubResource("RectangleShape2D_symyc")
+[node name="SmallPlayer" parent="." unique_id=709808415 instance=ExtResource("2_abrql")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1920870170]
+shape = SubResource("RectangleShape2D_abrql")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1416443364]
-rotation = 1.5707964
-texture = ExtResource("1_symyc")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1253524101]
-zoom = Vector2(2, 2)
-limit_left = 0
+enabled = false
+zoom = Vector2(1.5, 1.5)
+limit_left = -400
+limit_top = -400
+limit_right = 6100
+limit_bottom = 3600
