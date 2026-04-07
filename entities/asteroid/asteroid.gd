@@ -27,3 +27,10 @@ func shatter() -> void:
 	await sprite.animation_finished
 	
 	queue_free()
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("drill"):
+		health -= area.get_parent().MINING_POWER
+	if area.is_in_group("projectile"):
+		area.hit()
+		health -= area.damage
