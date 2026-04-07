@@ -1,8 +1,8 @@
 class_name Spacecraft extends RigidBody2D
 
-enum Type {ERRAND}
+enum Type {ERRAND, ASSAULT, BATTLESHIP}
 
+var health := 100
 
-
-var ship_id : int
-var task : TaskManager.Task
+var type : Type
+var task :=  TaskManager.Task.NONE
