@@ -1693,7 +1693,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qao45"]
 radius = 257.28
 
-[node name="EconomicPlanet" type="Area2D" unique_id=1411703471]
+[node name="EconomicPlanet" type="Area2D" unique_id=1411703471 groups=["planet"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=820657153]
 position = Vector2(0, -1)
