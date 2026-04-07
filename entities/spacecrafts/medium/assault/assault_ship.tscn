@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://cdsltu8x37br0"]
+
+[ext_resource type="Texture2D" uid="uid://3liul2d3ecrn" path="res://assets/ships/medium/Kla'ed - Torpedo Ship - Engine.png" id="1_a0387"]
+[ext_resource type="Script" uid="uid://c2rgnijr6apn3" path="res://entities/spacecrafts/medium/assault/assault_ship.gd" id="1_jxr2t"]
+[ext_resource type="Texture2D" uid="uid://rusk7abe6dmg" path="res://assets/ships/medium/Kla'ed - Torpedo Ship - Base.png" id="2_jxr2t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0611"]
+atlas = ExtResource("1_a0387")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a534t"]
+atlas = ExtResource("1_a0387")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i11a"]
+atlas = ExtResource("1_a0387")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b01u"]
+atlas = ExtResource("1_a0387")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqv40"]
+atlas = ExtResource("1_a0387")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7wi4"]
+atlas = ExtResource("1_a0387")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4q6g"]
+atlas = ExtResource("1_a0387")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0cay"]
+atlas = ExtResource("1_a0387")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fxym"]
+atlas = ExtResource("1_a0387")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8mxx"]
+atlas = ExtResource("1_a0387")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqper"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0611")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a534t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i11a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b01u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqv40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7wi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4q6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0cay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fxym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8mxx")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 24.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewsk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jxr2t")
+}],
+"loop": true,
+"name": &"base",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pgcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxr2t"]
+size = Vector2(48, 116)
+
+[node name="AssaultShip" type="RigidBody2D" unique_id=1736922013]
+gravity_scale = 0.0
+script = ExtResource("1_jxr2t")
+
+[node name="EngineSprite" type="AnimatedSprite2D" parent="." unique_id=1689612629]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wqper")
+animation = &"moving"
+autoplay = "idle"
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="." unique_id=1067249330]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ewsk0")
+animation = &"base"
+autoplay = "base"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=239292206]
+shape = SubResource("RectangleShape2D_4pgcj")
+disabled = true
+
+[node name="JobDuration" type="Timer" parent="." unique_id=81314003]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=773947804]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=189936824]
+shape = SubResource("RectangleShape2D_jxr2t")
