@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csubk30mfj66j"
-path="res://.godot/imported/Kla'ed - Support ship - Base.png-3960e3313587381688e9a69289f13779.ctex"
+path="res://.godot/imported/small.png-e184a0aa0b4c9a0a97e11848d5bf805f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ships/Kla'ed - Support ship - Base.png"
-dest_files=["res://.godot/imported/Kla'ed - Support ship - Base.png-3960e3313587381688e9a69289f13779.ctex"]
+source_file="res://assets/ships/small/small.png"
+dest_files=["res://.godot/imported/small.png-e184a0aa0b4c9a0a97e11848d5bf805f.ctex"]
 
 [params]
 

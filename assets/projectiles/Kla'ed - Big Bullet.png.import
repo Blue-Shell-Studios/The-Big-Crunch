@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4vl8p08jares"
-path="res://.godot/imported/Kla'ed - Fighter - Base.png-c1502c796942590f2a7759e2948d5890.ctex"
+uid="uid://dl0gptw6lboau"
+path="res://.godot/imported/Kla'ed - Big Bullet.png-281ac4602a13c79c73b5af3b6f0febd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ships/Kla'ed - Fighter - Base.png"
-dest_files=["res://.godot/imported/Kla'ed - Fighter - Base.png-c1502c796942590f2a7759e2948d5890.ctex"]
+source_file="res://assets/projectiles/Kla'ed - Big Bullet.png"
+dest_files=["res://.godot/imported/Kla'ed - Big Bullet.png-281ac4602a13c79c73b5af3b6f0febd4.ctex"]
 
 [params]
 
