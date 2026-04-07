@@ -1,13 +1,113 @@
 [gd_scene format=3 uid="uid://bdv3igevxcpk"]
 
 [ext_resource type="Script" uid="uid://bqqbxdxp4usnk" path="res://entities/spacecrafts/small/errand_ship/errand_ship.gd" id="1_15i2x"]
-[ext_resource type="Texture2D" uid="uid://csubk30mfj66j" path="res://assets/Ships/Kla'ed - Support ship - Base.png" id="1_q7w5x"]
+[ext_resource type="Texture2D" uid="uid://csubk30mfj66j" path="res://assets/ships/small/small.png" id="1_q7w5x"]
+[ext_resource type="Texture2D" uid="uid://pr33rttjxdlp" path="res://assets/ships/small/small_engine.png" id="2_mvjvm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxvx2"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm5mt"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb8ov"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqnub"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjsj2"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv1oa"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2diso"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpnb3"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3opmh"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3kjs"]
+atlas = ExtResource("2_mvjvm")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucqnx"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxvx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm5mt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb8ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqnub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjsj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv1oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2diso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpnb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3opmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3kjs")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 24.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvjvm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15i2x"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvjvm"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxvx2"]
+size = Vector2(28, 28)
 
 [node name="ErrandShip" type="RigidBody2D" unique_id=1045626184]
 gravity_scale = 0.0
 script = ExtResource("1_15i2x")
+
+[node name="EngineSprite" type="AnimatedSprite2D" parent="." unique_id=1054817555]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_ucqnx")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=406660234]
 rotation = 1.5707964
@@ -16,3 +116,25 @@ texture = ExtResource("1_q7w5x")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960991952]
 shape = SubResource("RectangleShape2D_mvjvm")
 disabled = true
+
+[node name="Drill" type="Area2D" parent="." unique_id=1946758265 groups=["drill"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drill" unique_id=1334396341]
+shape = SubResource("CircleShape2D_15i2x")
+disabled = true
+
+[node name="Net" type="Area2D" parent="." unique_id=280236387 groups=["net"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Net" unique_id=1576352244]
+shape = SubResource("CircleShape2D_mvjvm")
+disabled = true
+
+[node name="JobDuration" type="Timer" parent="." unique_id=803588564]
+process_callback = 0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=747502174]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1250630817]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_gxvx2")
