@@ -3,10 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://d3igwlsows36a" path="res://assets/Space Background 500x500.png" id="1_csopv"]
 [ext_resource type="PackedScene" uid="uid://chksy3a1klksk" path="res://entities/asteroid/asteroid_cluster.tscn" id="2_kagtj"]
 [ext_resource type="Script" uid="uid://bxuuhtrhrewt8" path="res://autoloads/managers/scrap_manager.gd" id="2_r77kf"]
-[ext_resource type="PackedScene" uid="uid://bdv3igevxcpk" path="res://entities/spacecrafts/small/errand_ship/errand_ship.tscn" id="3_3gdo0"]
 [ext_resource type="Texture2D" uid="uid://wepcmlh7pak1" path="res://assets/mystery_fog.png" id="6_cus2n"]
 [ext_resource type="PackedScene" uid="uid://drsbxwsdjdg4g" path="res://entities/planets/economic/economic_planet.tscn" id="6_kagtj"]
 [ext_resource type="PackedScene" uid="uid://cclg2tlupch6a" path="res://entities/planets/home_planet/home_planet.tscn" id="7_cus2n"]
+[ext_resource type="Script" uid="uid://dklhbc5jeglj3" path="res://autoloads/managers/ship_manager.gd" id="7_rayt5"]
+[ext_resource type="PackedScene" uid="uid://f0vy2dw20slt" path="res://utilities/patrol_site/patrol_site.tscn" id="9_jsmgm"]
+[ext_resource type="PackedScene" uid="uid://5d334bqorsq3" path="res://entities/player/player.tscn" id="9_xhu5d"]
+[ext_resource type="Script" uid="uid://d0ntbwx3ueqaa" path="res://autoloads/managers/projectile_manager.gd" id="10_xhu5d"]
 
 [node name="Main" type="Node2D" unique_id=1813492869]
 
@@ -47,9 +50,6 @@ position = Vector2(2287, 2732)
 
 [node name="ScrapManager" type="Node2D" parent="." unique_id=1266620648]
 script = ExtResource("2_r77kf")
-
-[node name="ErrandShip" parent="." unique_id=1045626184 instance=ExtResource("3_3gdo0")]
-position = Vector2(568, 319)
 
 [node name="Border" type="Node" parent="." unique_id=2126880692]
 
@@ -169,10 +169,6 @@ stretch_mode = 1
 flip_h = true
 flip_v = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=821078114]
-position = Vector2(2879, 1619)
-zoom = Vector2(0.2, 0.2)
-
 [node name="Planets" type="Node2D" parent="." unique_id=694183552]
 
 [node name="EconomicPlanet" parent="Planets" unique_id=1411703471 instance=ExtResource("6_kagtj")]
@@ -180,3 +176,51 @@ position = Vector2(3709, 1761)
 
 [node name="HomePlanet" parent="Planets" unique_id=966002560 instance=ExtResource("7_cus2n")]
 position = Vector2(1219, 856)
+
+[node name="ShipManager" type="Node2D" parent="." unique_id=1466729183]
+script = ExtResource("7_rayt5")
+
+[node name="SpawnCooldown" type="Timer" parent="ShipManager" unique_id=558545413]
+wait_time = 5.0
+autostart = true
+
+[node name="PatrolSites" type="Node2D" parent="." unique_id=797969259]
+
+[node name="PatrolSite1" parent="PatrolSites" unique_id=1675586154 instance=ExtResource("9_jsmgm")]
+position = Vector2(4773, 2705)
+
+[node name="PatrolSite2" parent="PatrolSites" unique_id=1001373371 instance=ExtResource("9_jsmgm")]
+position = Vector2(3868, 600)
+
+[node name="PatrolSite3" parent="PatrolSites" unique_id=1255652524 instance=ExtResource("9_jsmgm")]
+position = Vector2(1168, 2472)
+
+[node name="PatrolSite4" parent="PatrolSites" unique_id=1913042717 instance=ExtResource("9_jsmgm")]
+position = Vector2(996, 1433)
+
+[node name="PatrolSite5" parent="PatrolSites" unique_id=986475024 instance=ExtResource("9_jsmgm")]
+position = Vector2(2156, 358)
+
+[node name="PatrolSite6" parent="PatrolSites" unique_id=1192760886 instance=ExtResource("9_jsmgm")]
+position = Vector2(2318, 1661)
+
+[node name="PatrolSite7" parent="PatrolSites" unique_id=1867397449 instance=ExtResource("9_jsmgm")]
+position = Vector2(3093, 951)
+
+[node name="PatrolSite8" parent="PatrolSites" unique_id=709090656 instance=ExtResource("9_jsmgm")]
+position = Vector2(4676, 1302)
+
+[node name="PatrolSite9" parent="PatrolSites" unique_id=1636822283 instance=ExtResource("9_jsmgm")]
+position = Vector2(2677, 970)
+
+[node name="Player" parent="." unique_id=2077158740 instance=ExtResource("9_xhu5d")]
+position = Vector2(607, 347)
+
+[node name="ProjectileManager" type="Node2D" parent="." unique_id=548205996]
+script = ExtResource("10_xhu5d")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1631886865]
+position = Vector2(2896, 1620)
+zoom = Vector2(0.2, 0.2)
+
+[connection signal="timeout" from="ShipManager/SpawnCooldown" to="ShipManager" method="_on_spawn_cooldown_timeout"]
