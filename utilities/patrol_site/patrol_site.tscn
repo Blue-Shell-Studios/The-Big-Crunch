@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://f0vy2dw20slt"]
+
+[node name="PatrolSite" type="Node2D" unique_id=1675586154 groups=["patrol_site"]]
+
+[node name="Site1" type="Node2D" parent="." unique_id=1705742642]
+position = Vector2(0, -200)
+
+[node name="Site2" type="Node2D" parent="." unique_id=893646132]
+position = Vector2(200, 0)
+
+[node name="Site3" type="Node2D" parent="." unique_id=1381749219]
+position = Vector2(0, 200)
+
+[node name="Site4" type="Node2D" parent="." unique_id=336682753]
+position = Vector2(-200, 0)
+
+[node name="Site5" type="Node2D" parent="." unique_id=1443708457]
+position = Vector2(0, -200)
