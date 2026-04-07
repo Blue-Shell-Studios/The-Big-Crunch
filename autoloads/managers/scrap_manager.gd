@@ -12,6 +12,8 @@ func _ready() -> void:
 func spawn_scraps(origin: Vector2, spread: float, amount: int) -> void:
 	for i in range(amount):
 		var scrap = SCRAP_SCENE.instantiate()
-		add_child(scrap)
-		
 		scrap.position = origin + Vector2(randf_range(-spread, spread), randf_range(-spread, spread))
+		
+		add_child.call_deferred(scrap)
+		
+		
