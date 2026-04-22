@@ -10,8 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://f0vy2dw20slt" path="res://utilities/patrol_site/patrol_site.tscn" id="9_jsmgm"]
 [ext_resource type="PackedScene" uid="uid://5d334bqorsq3" path="res://entities/player/player.tscn" id="9_xhu5d"]
 [ext_resource type="Script" uid="uid://d0ntbwx3ueqaa" path="res://autoloads/managers/projectile_manager.gd" id="10_xhu5d"]
+[ext_resource type="PackedScene" uid="uid://dkhn3hvkbq8hy" path="res://utilities/HUD/hud.tscn" id="11_rayt5"]
 
 [node name="Main" type="Node2D" unique_id=1813492869]
+
+[node name="HUD" parent="." unique_id=207708789 instance=ExtResource("11_rayt5")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1920781301]
 offset_left = -437.0
@@ -221,6 +224,7 @@ script = ExtResource("10_xhu5d")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1631886865]
 position = Vector2(2896, 1620)
+enabled = false
 zoom = Vector2(0.2, 0.2)
 
 [connection signal="timeout" from="ShipManager/SpawnCooldown" to="ShipManager" method="_on_spawn_cooldown_timeout"]
