@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dkhn3hvkbq8hy"]
+
+[ext_resource type="Script" uid="uid://bfpq7ejuhewvk" path="res://utilities/HUD/health_bar.gd" id="1_pvd6h"]
+[ext_resource type="FontFile" uid="uid://cmvxpw7den8e4" path="res://assets/fonts/PixelOperator8.ttf" id="2_gnqu5"]
+[ext_resource type="Script" uid="uid://dicx2fft6a6dc" path="res://utilities/HUD/exp_bar.gd" id="3_h2a2x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvd6h"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnqu5"]
+bg_color = Color(1, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2a2x"]
+font = ExtResource("2_gnqu5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2a2x"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jn7l0"]
+bg_color = Color(0, 0, 0.6, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=207708789]
+
+[node name="PlayerStats" type="Control" parent="." unique_id=631671666]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerStats" unique_id=984951107]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pvd6h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gnqu5")
+show_percentage = false
+script = ExtResource("1_pvd6h")
+
+[node name="HealthLabel" type="Label" parent="PlayerStats/HealthBar" unique_id=1113860295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP/MAX"
+label_settings = SubResource("LabelSettings_h2a2x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpBar" type="ProgressBar" parent="PlayerStats" unique_id=988432927]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 75.0
+offset_right = 230.0
+offset_bottom = 105.0
+theme_override_styles/background = SubResource("StyleBoxFlat_h2a2x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jn7l0")
+show_percentage = false
+script = ExtResource("3_h2a2x")
