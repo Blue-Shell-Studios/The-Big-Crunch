@@ -55,6 +55,7 @@ frame_progress = 0.41503134
 shape = SubResource("RectangleShape2D_nc31j")
 
 [node name="Duration" type="Timer" parent="." unique_id=16814876]
-wait_time = 3.0
+wait_time = 2.0
+autostart = true
 
 [connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

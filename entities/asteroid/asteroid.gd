@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	rotation += ROTATION_VELOCITY * delta
 
 func shatter() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
 	SignalBus.spawn_scraps.emit(global_position, 18, SCRAP_ON_SHATTER)
 	
 	sprite.play("shatter")

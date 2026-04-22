@@ -48,6 +48,7 @@ position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_abvrv")
 
 [node name="Duration" type="Timer" parent="." unique_id=182136603]
-wait_time = 5.0
+wait_time = 3.0
+autostart = true
 
 [connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
