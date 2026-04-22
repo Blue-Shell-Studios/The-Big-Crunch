@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://5d334bqorsq3"]
 
-[ext_resource type="Script" uid="uid://cg6owtci4nkum" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="PackedScene" uid="uid://bfryqcjygvg4y" path="res://entities/player/bodies/small_player.tscn" id="2_abrql"]
+[ext_resource type="Script" uid="uid://cg6owtci4nkum" path="res://entities/player/Player.gd" id="1_abrql"]
+[ext_resource type="PackedScene" uid="uid://bfryqcjygvg4y" path="res://entities/player/vessels/small_player_vessel.tscn" id="2_abrql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abrql"]
 
-[node name="Player" type="RigidBody2D" unique_id=2077158740 groups=["player"]]
+[node name="Player" type="RigidBody2D" unique_id=248701716 groups=["player"]]
 gravity_scale = 0.0
 script = ExtResource("1_abrql")
+metadata/_custom_type_script = "uid://cg6owtci4nkum"
 
 [node name="SmallPlayer" parent="." unique_id=709808415 instance=ExtResource("2_abrql")]
 
@@ -16,8 +17,7 @@ shape = SubResource("RectangleShape2D_abrql")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1253524101]
-enabled = false
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
 limit_left = -400
 limit_top = -400
 limit_right = 6100

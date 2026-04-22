@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name Player extends RigidBody2D
 
 enum Stage {SMALL, MEDIUM, LARGE, MASSIVE}
 
@@ -6,41 +6,54 @@ const MASSIVE_PLAYER = preload("uid://cdsarwfuk2hrn")
 const LARGE_PLAYER = preload("uid://dwmprv3fl0yy5")
 const MEDIUM_PLAYER = preload("uid://cv8um7ekrmdgh")
 
-@export_group("Movement Settings")
-@export var sensitivity: float = 0.4
-@export var max_speed: float = 800.0
-@export var friction: float = 0.92 # 1.0 = No friction, 0.0 = Instant stop
 @export var rotation_speed: float = 10.0
 
-@onready var vessel: Area2D = $SmallPlayer
+@onready var vessel: PlayerVessel = $SmallPlayer
 @onready var camera: Camera2D = $Camera2D
 
-var is_moving := false
 var stage := Stage.SMALL
 
-var health := 150
-var mouse_delta = Vector2.ZERO
+var max_exp : int
+var exp: int :
+	set(value):
+		exp = clamp(value, 0, max_exp)
+		
+		if exp == max_exp:
+			upgrade()
+			exp = 0
+		
+		SignalBus.update_exp.emit(exp, max_exp)
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		mouse_delta += event.relative
+	max_exp = vessel.exp_requirement
+	exp = 0
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	# Additive Momentum
-	if mouse_delta != Vector2.ZERO:
-		var push = mouse_delta * sensitivity * 10.0
-		state.linear_velocity += push
-		mouse_delta = Vector2.ZERO # Reset the buffer
+	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	var net_force : Vector2 = Vector2.ZERO
+	var stop_threshold : float = 10
 
-	# Speed Clamping
-	if state.linear_velocity.length() > max_speed:
-		state.linear_velocity = state.linear_velocity.normalized() * max_speed
+	if direction == Vector2.ZERO:
+		vessel.state = PlayerVessel.State.IDLE
+		
+		if state.linear_velocity.length() < stop_threshold:
+			# hard stop
+			state.linear_velocity = Vector2.ZERO
+			net_force = Vector2.ZERO
+		else:
+			# apply braking force
+			net_force = -state.linear_velocity.normalized() * vessel.max_braking_force
+	else:
+		vessel.state = PlayerVessel.State.MOVING
+		# accelerate
+		net_force = direction * vessel.engine_power
 
-	# Gradual Halt
-	state.linear_velocity *= friction
+	state.apply_central_force(net_force)
+	
+	# clamp velocity
+	if state.linear_velocity.length() > vessel.max_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * vessel.max_speed
 
 	# Rotation
 	if state.linear_velocity.length() > 20:
@@ -48,33 +61,31 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		global_rotation = lerp_angle(global_rotation, target_angle, rotation_speed * state.step)
 
 	# Prevent Physics Drift
-	state.angular_velocity = 0
+	state.angular_velocity = 0	
 	
 func upgrade() -> void:
 	if stage == Stage.MASSIVE: return
 	
-	stage += 1
-	
-	max_speed *= 1.2
+	stage = (stage + 1) as Stage
 	
 	vessel.queue_free()
 	match stage:
 		Stage.MEDIUM:
-			health = 600
+			#health = 600
 			var medium_vessel = MEDIUM_PLAYER.instantiate()
 			add_child(medium_vessel)
 			
 			vessel = medium_vessel
 			camera.zoom = Vector2(0.8, 0.8)
 		Stage.LARGE:
-			health = 3900
+			#health = 3900
 			var large_vessel = LARGE_PLAYER.instantiate()
 			add_child(large_vessel)
 			
 			vessel = large_vessel
 			camera.zoom = Vector2(0.7, 0.7)
 		Stage.MASSIVE:
-			health = 10000
+			#health = 10000
 			var massive_vessel = MASSIVE_PLAYER.instantiate()
 			add_child(massive_vessel)
 			
@@ -82,8 +93,5 @@ func upgrade() -> void:
 			camera.zoom = Vector2(0.5, 0.5)
 
 func _process(_delta) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
 	if Input.is_action_just_pressed("attack"):
 		vessel.attack()

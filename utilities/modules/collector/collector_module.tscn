@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c27tmdyiy378j"]
+
+[ext_resource type="Script" uid="uid://ds4v8ahnfe26c" path="res://utilities/modules/collector/collector_module.gd" id="1_4sc8n"]
+
+[node name="CollectorModule" type="Area2D" unique_id=815506841 groups=["collector_module"]]
+script = ExtResource("1_4sc8n")
