@@ -1,6 +1,7 @@
 extends Spacecraft
 
 const SHIP_TYPE = Type.ERRAND
+const COLLECTOR_POWER := 800
 
 enum State { IDLE, MOVING, WORKING }
 var current_state: State = State.IDLE
@@ -8,21 +9,20 @@ var current_state: State = State.IDLE
 @onready var engine_sprite: AnimatedSprite2D = $EngineSprite
 
 @onready var job_duration: Timer = $JobDuration
-@onready var net: CollisionShape2D = $Net/CollisionShape2D
 @onready var drill: CollisionShape2D = $Drill/CollisionShape2D
+@onready var collector_module: CollectorModule = $CollectorModule
 
 @export var target_position: Vector2 = Vector2.ZERO
 @export var max_speed: float = 500.0
-@export var max_acceleration: float = 800.0
+@export var max_acceleration: float = 500.0
 @export var stopping_distance: float = 200.0
 @export var rotation_speed: float = 10.0
 
 # Mining
-const MINING_POWER := 10
+const MINING_POWER := 50
 var asteroid : Node
 
 # Scavenge
-const GATHERING_POWER := 800
 var scrap : Node
 
 # Transport
@@ -32,6 +32,7 @@ func _ready() -> void:
 	type = Type.ERRAND
 	
 	health = 100
+	collector_module.power = COLLECTOR_POWER
 	
 func _process(delta: float) -> void:
 	if current_state == State.IDLE and task == TaskManager.Task.NONE:
@@ -60,6 +61,10 @@ func target_reached() -> void:
 	perform_job()
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if not is_task_valid():
+		end_task()
+		return
+	
 	if current_state == State.MOVING:
 		navigate(state)
 	else:
@@ -98,7 +103,22 @@ func navigate(state: PhysicsDirectBodyState2D):
 		state.angular_velocity = 0
 		target_reached()
 
+func is_task_valid() -> bool:
+	match task:
+		TaskManager.Task.MINE:
+			return is_instance_valid(asteroid)
+		TaskManager.Task.SCAVENGE:
+			return is_instance_valid(scrap)
+		_:
+			return true
+
+func end_task():
+	task = TaskManager.Task.NONE
+	current_state = State.IDLE
+
 func perform_job() -> void:
+	engine_sprite.play("idle")
+	
 	match task:
 		TaskManager.Task.MINE:
 			drill.set_deferred("disabled", false)
@@ -107,10 +127,10 @@ func perform_job() -> void:
 			drill.set_deferred("disabled", true)
 			
 		TaskManager.Task.SCAVENGE:
-			net.set_deferred("disabled", false)
+			collector_module.set_active_status(true)
 			job_duration.start()
 			await job_duration.timeout
-			net.set_deferred("disabled", true)
+			collector_module.set_active_status(false)
 			
 		TaskManager.Task.TRANSPORT:
 			job_duration.start()
@@ -122,5 +142,4 @@ func perform_job() -> void:
 				current_state = State.MOVING
 				return
 	
-	task = TaskManager.Task.NONE
-	current_state = State.IDLE
+	end_task()
