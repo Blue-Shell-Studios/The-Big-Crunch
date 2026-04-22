@@ -4,8 +4,6 @@ const ERRAND_SHIP_SCENE := preload("uid://bdv3igevxcpk")
 const ASSAULT_SHIP_SCENE := preload("uid://cdsltu8x37br0")
 const BATTLESHIP_SCENE := preload("uid://dff0skbici111")
 
-const SCENE_COLLECTION := [ERRAND_SHIP_SCENE, ASSAULT_SHIP_SCENE, BATTLESHIP_SCENE]
-
 const SPAWN_LOCATION := Vector2(3709.0, 1761.0)
 
 const INIT_NUMBER_OF_ERRAND := 10
@@ -36,26 +34,22 @@ func spawn_ship(scene: Resource, num: int) -> void:
 		
 		add_child(ship)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_spawn_cooldown_timeout() -> void:
-	var scene: Resource
-	while true:
-		scene = SCENE_COLLECTION.pick_random()
+	var spawnable_ships: Array[Resource]
+	
+	if num_of_errand < MAX_NUMBER_OF_ERRAND: spawnable_ships.append(ERRAND_SHIP_SCENE)
+	if num_of_assault < MAX_NUMBER_OF_ASSAULT: spawnable_ships.append(ASSAULT_SHIP_SCENE)
+	if num_of_battleship < MAX_NUMBER_OF_BATTLESHIP: spawnable_ships.append(BATTLESHIP_SCENE)
+	
+	if spawnable_ships.is_empty(): return
 		
-		match scene:
-			ERRAND_SHIP_SCENE:
-				if num_of_errand >= MAX_NUMBER_OF_ERRAND: continue
-				num_of_errand += 1
-			ASSAULT_SHIP_SCENE:
-				if num_of_assault >= MAX_NUMBER_OF_ASSAULT: continue
-				num_of_assault += 1
-			BATTLESHIP_SCENE:
-				if num_of_battleship >= MAX_NUMBER_OF_BATTLESHIP: continue
-				num_of_battleship += 1
-		
-		spawn_ship(scene, 1)
-		break
+	var scene: Resource = spawnable_ships.pick_random()
+	match scene:
+		ERRAND_SHIP_SCENE:
+			num_of_errand += 1
+		ASSAULT_SHIP_SCENE:
+			num_of_assault += 1
+		BATTLESHIP_SCENE:
+			num_of_battleship += 1
+	
+	spawn_ship(scene, 1)
