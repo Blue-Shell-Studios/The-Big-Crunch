@@ -5,7 +5,5 @@ extends Node2D
 func _ready() -> void:
 	SignalBus.spawn_projectile.connect(spawn_projectile)
 
-func spawn_projectile(projectile: Node2D, origin: Vector2, velocity: Vector2):
+func spawn_projectile(projectile: Projectile):
 	add_child(projectile)
-	projectile.global_position = origin
-	projectile.velocity = velocity
