@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cv8um7ekrmdgh"]
 
+[ext_resource type="Script" uid="uid://qaembuxinp55" path="res://entities/player/vessels/medium_player_vessel.gd" id="1_2ucdt"]
 [ext_resource type="Texture2D" uid="uid://cvbnta2mdo1fu" path="res://assets/ships/medium/Kla'ed - Frigate - Engine.png" id="1_wtbkj"]
 [ext_resource type="Texture2D" uid="uid://lnv3um20bp8c" path="res://assets/ships/medium/Kla'ed - Frigate - Base.png" id="2_g02ay"]
+[ext_resource type="PackedScene" uid="uid://c27tmdyiy378j" path="res://utilities/modules/collector/collector_module.tscn" id="3_7fgis"]
+[ext_resource type="Texture2D" uid="uid://da0knmlbw3krx" path="res://assets/ships/medium/Kla'ed - Frigate - Weapons.png" id="3_pmhmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8osh"]
 atlas = ExtResource("1_wtbkj")
@@ -53,7 +56,10 @@ region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_piha4"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -100,8 +106,55 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ipv"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2acwu"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teufc"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5usv"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bg8l"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jotfe"]
+atlas = ExtResource("3_pmhmq")
+region = Rect2(320, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yf22t"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ipv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2acwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teufc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5usv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bg8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jotfe")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_g02ay")
@@ -114,7 +167,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqka"]
 size = Vector2(71, 26)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p32ej"]
+radius = 50.0
+
 [node name="MediumPlayer" type="Area2D" unique_id=558908006]
+script = ExtResource("1_2ucdt")
 
 [node name="EngineSprite" type="AnimatedSprite2D" parent="." unique_id=1317330615]
 rotation = 1.5707964
@@ -129,8 +186,30 @@ frame_progress = 0.28737307
 rotation = 1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yf22t")
+animation = &"attack"
 autoplay = "default"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1503433340]
 position = Vector2(2.5, 0)
 shape = SubResource("RectangleShape2D_xtqka")
+
+[node name="CollectorModule" parent="." unique_id=1073425067 instance=ExtResource("3_7fgis")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectorModule" unique_id=500645454]
+shape = SubResource("CircleShape2D_p32ej")
+disabled = true
+
+[node name="ProjectileOrigins" type="Node2D" parent="." unique_id=1793197068]
+
+[node name="PO1" type="Node2D" parent="ProjectileOrigins" unique_id=2061204851]
+position = Vector2(-13, 20)
+
+[node name="PO2" type="Node2D" parent="ProjectileOrigins" unique_id=1888523545]
+position = Vector2(-13, -20)
+
+[node name="PO3" type="Node2D" parent="ProjectileOrigins" unique_id=2103258544]
+position = Vector2(19, -15)
+
+[node name="PO4" type="Node2D" parent="ProjectileOrigins" unique_id=210084601]
+position = Vector2(19, 15)

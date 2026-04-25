@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dwmprv3fl0yy5"]
 
+[ext_resource type="Script" uid="uid://bv1v2fh8vc023" path="res://entities/player/vessels/large_player_vessel.gd" id="1_qax3c"]
 [ext_resource type="Texture2D" uid="uid://tgfl30m53yui" path="res://assets/ships/large/Kla'ed - Battlecruiser - Engine.png" id="1_wjwvv"]
-[ext_resource type="Texture2D" uid="uid://c8acvpr5xsx4h" path="res://assets/ships/large/Kla'ed - Battlecruiser - Base.png" id="2_odw58"]
+[ext_resource type="Texture2D" uid="uid://dhlab4endslrm" path="res://assets/ships/large/Kla'ed - Battlecruiser - Weapons.png" id="3_7stya"]
+[ext_resource type="PackedScene" uid="uid://c27tmdyiy378j" path="res://utilities/modules/collector/collector_module.tscn" id="3_h58ci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5r8i7"]
 atlas = ExtResource("1_wjwvv")
@@ -53,7 +55,10 @@ region = Rect2(1408, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vy1db"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -100,11 +105,133 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ldlh"]
+atlas = ExtResource("3_7stya")
+region = Rect2(1920, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ane"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2048, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jidyu"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2176, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkrfe"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2304, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1mqw"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2432, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60xw8"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2560, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndfpg"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2688, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qkpn"]
+atlas = ExtResource("3_7stya")
+region = Rect2(2816, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt1ov"]
+atlas = ExtResource("3_7stya")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bbad"]
+atlas = ExtResource("3_7stya")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os4j3"]
+atlas = ExtResource("3_7stya")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1clke"]
+atlas = ExtResource("3_7stya")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drm14"]
+atlas = ExtResource("3_7stya")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1lfh"]
+atlas = ExtResource("3_7stya")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6ea1"]
+atlas = ExtResource("3_7stya")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0jn2"]
+atlas = ExtResource("3_7stya")
+region = Rect2(896, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3qjsy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_odw58")
+"texture": SubResource("AtlasTexture_6ldlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1ane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jidyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkrfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1mqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60xw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndfpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qkpn")
+}],
+"loop": true,
+"name": &"attack_left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt1ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bbad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os4j3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1clke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drm14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1lfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6ea1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0jn2")
+}],
+"loop": true,
+"name": &"attack_right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt1ov")
 }],
 "loop": true,
 "name": &"default",
@@ -114,7 +241,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5iyu"]
 size = Vector2(167.5, 60)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yh6yh"]
+radius = 92.0
+
 [node name="LargePlayer" type="Area2D" unique_id=341041791]
+script = ExtResource("1_qax3c")
 
 [node name="EngineSprite" type="AnimatedSprite2D" parent="." unique_id=885142636]
 rotation = 1.5707964
@@ -127,8 +258,30 @@ autoplay = "idle"
 rotation = 1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3qjsy")
+animation = &"attack_right"
 autoplay = "default"
+frame_progress = 0.79559445
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1602311214]
 position = Vector2(14.25, 0)
 shape = SubResource("RectangleShape2D_o5iyu")
+
+[node name="CollectorModule" parent="." unique_id=1679464785 instance=ExtResource("3_h58ci")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectorModule" unique_id=783796377]
+shape = SubResource("CircleShape2D_yh6yh")
+disabled = true
+
+[node name="ProjectileOrigins" type="Node2D" parent="." unique_id=616725121]
+
+[node name="PO1" type="Node2D" parent="ProjectileOrigins" unique_id=1209769630]
+position = Vector2(15, -22)
+
+[node name="PO2" type="Node2D" parent="ProjectileOrigins" unique_id=1385985027]
+position = Vector2(57, -22)
+
+[node name="PO3" type="Node2D" parent="ProjectileOrigins" unique_id=589961807]
+position = Vector2(15, 22)
+
+[node name="PO4" type="Node2D" parent="ProjectileOrigins" unique_id=1348600861]
+position = Vector2(57, 22)
