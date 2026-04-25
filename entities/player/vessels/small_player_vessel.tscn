@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0kqc88nbclhu" path="res://entities/player/vessels/small_player_vessel.gd" id="1_ncwt4"]
 [ext_resource type="Texture2D" uid="uid://cdgmmetpwet74" path="res://assets/ships/small/Kla'ed - Fighter - Engine.png" id="2_n3j1f"]
+[ext_resource type="Texture2D" uid="uid://die8hw2p0e5il" path="res://assets/ships/small/Kla'ed - Fighter - Weapons.png" id="3_n3j1f"]
 [ext_resource type="Texture2D" uid="uid://c4s1rf8hsq1t7" path="res://assets/ships/small/Kla'ed - Fighter - Base.png" id="3_pd3rr"]
 [ext_resource type="PackedScene" uid="uid://c27tmdyiy378j" path="res://utilities/modules/collector/collector_module.tscn" id="4_tfajq"]
 
@@ -91,8 +92,55 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd3rr"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfajq"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbsb5"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjotj"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8t55"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dih1w"]
+atlas = ExtResource("3_n3j1f")
+region = Rect2(320, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bot8c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd3rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfajq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbsb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjotj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8t55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dih1w")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_pd3rr")
@@ -121,7 +169,10 @@ autoplay = "idle"
 [node name="BodySprite" type="AnimatedSprite2D" parent="." unique_id=1597540283]
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_bot8c")
+animation = &"attack"
 autoplay = "default"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=684128968]
 position = Vector2(2.5, 0)
@@ -132,3 +183,11 @@ shape = SubResource("RectangleShape2D_tssdy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectorModule" unique_id=949836197]
 shape = SubResource("CircleShape2D_bcavf")
 disabled = true
+
+[node name="ProjectileOrigins" type="Node2D" parent="." unique_id=862307163]
+
+[node name="PO1" type="Node2D" parent="ProjectileOrigins" unique_id=718270086]
+position = Vector2(1, 6)
+
+[node name="PO2" type="Node2D" parent="ProjectileOrigins" unique_id=251548089]
+position = Vector2(1, -6)

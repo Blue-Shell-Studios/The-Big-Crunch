@@ -13,7 +13,8 @@ func _ready() -> void:
 	max_speed = 800.0
 	max_braking_force = 600.0
 	
-	exp_requirement = 200
+	#exp_requirement = 200
+	exp_requirement = 10
 	
 	max_health = MAX_HEALTH
 	health = MAX_HEALTH
@@ -32,14 +33,24 @@ func manage_sprite() -> void:
 			$EngineSprite.play("moving")
 
 func attack() -> void:
+	var sprite: AnimatedSprite2D = $BodySprite
+	if sprite.animation == "attack": return
+	
 	var player_rotation = get_parent().rotation
-	var player_look_dir = Vector2.RIGHT.rotated(player_rotation)
 	
-	var projectile_node = BULLET.instantiate()
-	projectile_node.rotation = player_rotation
+	sprite.play("attack")
+	fire_projectile($ProjectileOrigins/PO1, player_rotation, sprite, 1)
+	fire_projectile($ProjectileOrigins/PO2, player_rotation, sprite, 3)
 	
-	var projectile_origin = get_parent().global_position + player_look_dir * 14
-	var projectile_velocity = player_look_dir * PROJECTILE_SPEED
+	await sprite.animation_finished
+	sprite.play("default")
+
+func fire_projectile(origin: Node2D, base_rotation: float, sprite: AnimatedSprite2D, frame_num: int) -> void:
+	while sprite.frame < frame_num:
+		await sprite.frame_changed
 	
-	SignalBus.spawn_projectile.emit(projectile_node, projectile_origin, projectile_velocity)
-	
+	var projectile : Projectile = BULLET.instantiate()
+	projectile.global_position = origin.global_position
+	projectile.rotation = base_rotation
+	projectile.velocity = Vector2.RIGHT.rotated(base_rotation) * PROJECTILE_SPEED
+	SignalBus.spawn_projectile.emit(projectile)
