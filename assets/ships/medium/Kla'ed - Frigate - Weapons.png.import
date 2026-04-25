@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4vl8p08jares"
-path="res://.godot/imported/Kla'ed - Fighter - Base.png-c1502c796942590f2a7759e2948d5890.ctex"
+uid="uid://da0knmlbw3krx"
+path="res://.godot/imported/Kla'ed - Frigate - Weapons.png-26afa826975e342a0be5dc44bb44b484.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ships/Kla'ed - Fighter - Base.png"
-dest_files=["res://.godot/imported/Kla'ed - Fighter - Base.png-c1502c796942590f2a7759e2948d5890.ctex"]
+source_file="res://assets/ships/medium/Kla'ed - Frigate - Weapons.png"
+dest_files=["res://.godot/imported/Kla'ed - Frigate - Weapons.png-26afa826975e342a0be5dc44bb44b484.ctex"]
 
 [params]
 
