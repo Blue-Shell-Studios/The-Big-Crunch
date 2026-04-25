@@ -12,6 +12,7 @@ const MEDIUM_PLAYER = preload("uid://cv8um7ekrmdgh")
 @onready var camera: Camera2D = $Camera2D
 
 var stage := Stage.SMALL
+var camera_zoom_tween: Tween
 
 var max_exp : int
 var exp: int :
@@ -27,6 +28,15 @@ var exp: int :
 func _ready():
 	max_exp = vessel.exp_requirement
 	exp = 0
+
+func transition_camera_zoom(target_zoom: Vector2) -> void:
+	if camera_zoom_tween:
+		camera_zoom_tween.kill()
+
+	camera_zoom_tween = create_tween()
+	camera_zoom_tween.set_trans(Tween.TRANS_SINE)
+	camera_zoom_tween.set_ease(Tween.EASE_OUT)
+	camera_zoom_tween.tween_property(camera, "zoom", target_zoom, 0.8)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -71,26 +81,26 @@ func upgrade() -> void:
 	vessel.queue_free()
 	match stage:
 		Stage.MEDIUM:
-			#health = 600
 			var medium_vessel = MEDIUM_PLAYER.instantiate()
 			add_child(medium_vessel)
 			
 			vessel = medium_vessel
-			camera.zoom = Vector2(0.8, 0.8)
+			sync_progress_to_vessel()
+			transition_camera_zoom(Vector2(0.8, 0.8))
 		Stage.LARGE:
-			#health = 3900
 			var large_vessel = LARGE_PLAYER.instantiate()
 			add_child(large_vessel)
 			
 			vessel = large_vessel
-			camera.zoom = Vector2(0.7, 0.7)
+			sync_progress_to_vessel()
+			transition_camera_zoom(Vector2(0.7, 0.7))
 		Stage.MASSIVE:
-			#health = 10000
 			var massive_vessel = MASSIVE_PLAYER.instantiate()
 			add_child(massive_vessel)
 			
 			vessel = massive_vessel
-			camera.zoom = Vector2(0.5, 0.5)
+			sync_progress_to_vessel()
+			transition_camera_zoom(Vector2(0.5, 0.5))
 
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("attack"):
