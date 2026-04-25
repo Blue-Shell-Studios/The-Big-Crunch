@@ -117,7 +117,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxv1a"]
 size = Vector2(177, 144)
 
-[node name="Battleship" type="RigidBody2D" unique_id=648770461]
+[node name="Battleship" type="RigidBody2D" unique_id=648770461 groups=["npc"]]
+collision_layer = 4
+collision_mask = 11
 gravity_scale = 0.0
 script = ExtResource("1_xxv1a")
 
@@ -144,6 +146,8 @@ wait_time = 30.0
 one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=760162717]
+collision_layer = 4
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1249546967]
 position = Vector2(12.5, 0)

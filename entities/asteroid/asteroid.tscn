@@ -78,7 +78,7 @@ animations = [{
 radius = 18.027756
 
 [node name="Asteroid" type="Area2D" unique_id=1414961674 groups=["asteroid"]]
-collision_layer = 0
+collision_mask = 80
 script = ExtResource("1_ecv56")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=265589201]

@@ -102,7 +102,9 @@ radius = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxvx2"]
 size = Vector2(28, 28)
 
-[node name="ErrandShip" type="RigidBody2D" unique_id=1045626184]
+[node name="ErrandShip" type="RigidBody2D" unique_id=1045626184 groups=["npc"]]
+collision_layer = 4
+collision_mask = 11
 gravity_scale = 0.0
 script = ExtResource("1_15i2x")
 
@@ -122,12 +124,16 @@ shape = SubResource("RectangleShape2D_mvjvm")
 disabled = true
 
 [node name="Drill" type="Area2D" parent="." unique_id=1946758265 groups=["drill"]]
+collision_layer = 64
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Drill" unique_id=1334396341]
 shape = SubResource("CircleShape2D_15i2x")
 disabled = true
 
 [node name="CollectorModule" type="Area2D" parent="." unique_id=783845209 groups=["collector_module"]]
+collision_layer = 64
+collision_mask = 32
 script = ExtResource("4_gxvx2")
 metadata/_custom_type_script = "uid://ds4v8ahnfe26c"
 
@@ -140,6 +146,8 @@ process_callback = 0
 one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=747502174]
+collision_layer = 4
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1250630817]
 position = Vector2(3, 0)

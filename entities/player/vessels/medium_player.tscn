@@ -171,6 +171,8 @@ size = Vector2(71, 26)
 radius = 50.0
 
 [node name="MediumPlayer" type="Area2D" unique_id=558908006]
+collision_layer = 2
+collision_mask = 29
 script = ExtResource("1_2ucdt")
 
 [node name="EngineSprite" type="AnimatedSprite2D" parent="." unique_id=1317330615]

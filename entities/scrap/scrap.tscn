@@ -6,7 +6,8 @@
 radius = 8.246211
 
 [node name="Scrap" type="Area2D" unique_id=310283707 groups=["scrap"]]
-collision_layer = 0
+collision_layer = 32
+collision_mask = 64
 script = ExtResource("1_t0ab1")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1550724711]
