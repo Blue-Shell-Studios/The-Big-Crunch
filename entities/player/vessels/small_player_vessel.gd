@@ -13,8 +13,7 @@ func _ready() -> void:
 	max_speed = 800.0
 	max_braking_force = 600.0
 	
-	#exp_requirement = 200
-	exp_requirement = 10
+	exp_requirement = 50
 	
 	max_health = MAX_HEALTH
 	health = MAX_HEALTH
