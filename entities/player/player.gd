@@ -19,13 +19,17 @@ var exp: int :
 	set(value):
 		exp = clamp(value, 0, max_exp)
 		
-		if exp == max_exp:
+		if max_exp > 0 and exp == max_exp:
 			upgrade()
 			exp = 0
 		
 		SignalBus.update_exp.emit(exp, max_exp)
 
 func _ready():
+	max_exp = vessel.exp_requirement
+	exp = 0
+
+func sync_progress_to_vessel() -> void:
 	max_exp = vessel.exp_requirement
 	exp = 0
 
